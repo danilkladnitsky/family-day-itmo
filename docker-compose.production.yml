@@ -63,10 +63,36 @@ services:
   #   networks:
   #     - postgres_family
 
-  bot-service:
+  bot-manager:
     container_name: bot_manager
     build:
-      context: ./bot-bot_manager
+      context: ./bot-manager
+      dockerfile: Dockerfile
+    command: npm run start
+    depends_on:
+      - postgres
+    volumes:
+      - /home/.env:/partnadem/src/bot/.env
+    networks:
+      - postgres_family
+
+  bot-router:
+    container_name: bot_router
+    build:
+      context: ./bot-router
+      dockerfile: Dockerfile
+    command: npm run start
+    depends_on:
+      - postgres
+    volumes:
+      - /home/.env:/partnadem/src/bot/.env
+    networks:
+      - postgres_family
+
+  message_service:
+    container_name: message_service
+    build:
+      context: ./message-service
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
