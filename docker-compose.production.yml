@@ -63,6 +63,21 @@ services:
   #   networks:
   #     - postgres_family
 
+  bot-service:
+    container_name: bot_manager
+    build:
+      context: ./bot-bot_manager
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    command: npm run start
+    depends_on:
+      - postgres
+    volumes:
+      - /home/.env:/partnadem/src/bot/.env
+    networks:
+      - postgres_family
+
 volumes:
   redis_data:
     driver: local
