@@ -1,0 +1,72 @@
+@font-face {
+  font-family: "Bold";
+  src: url("fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Medium";
+  src: url("fonts/Montserrat-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Regular";
+  src: url("fonts/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Semibold";
+  src: url("fonts/Montserrat-SemiBold.ttf");
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+
+  font-family: "Regular";
+}
+
+.react-flow {
+  background: #f3f5fa;
+}
+
+textarea {
+  min-height: 80px;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  border: none;
+  background: #f3f5fa;
+  border-radius: 4px;
+  font-family: "Regular";
+  resize: vertical;
+
+  max-height: 300px;
+  width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+input {
+  width: 100%;
+  min-height: 35px;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  border: none;
+  background: #f3f5fa;
+  border-radius: 4px;
+  font-family: "Regular";
+}
+
+button {
+  height: 45px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #497fff;
+  color: #fff;
+
+  font-family: "Medium";
+
+  cursor: pointer;
+}

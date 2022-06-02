@@ -1,0 +1,8 @@
+.env
+redis_data
+postgres
+pgadmin
+
+
+
+**/.env*
