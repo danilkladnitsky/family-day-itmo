@@ -32,7 +32,12 @@ export class ReceiverService {
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
       parse_mode: 'HTML',
 
-      ...{ ...keyboard, one_time_keyboard: true, hide_keyboard: true },
+      ...{
+        ...keyboard,
+        one_time_keyboard: true,
+        hide_keyboard: true,
+        remove_keyboard: true,
+      },
     });
   }
 
