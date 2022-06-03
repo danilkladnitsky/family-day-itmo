@@ -28,21 +28,23 @@ services:
       - "./redis_data:/usr/local/etc/redis/redis.conf"
     ports:
       - "6379:6379"
-
-  postgres:
-    container_name: postgres_manager
-    image: postgres:14.3-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./postgres:/data/postgres
-    restart: unless-stopped
     networks:
       - postgres_family
+
+  # postgres:
+  #   container_name: postgres_manager
+  #   image: postgres:14.3-alpine
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: password
+  #     POSTGRES_DB: postgres
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - ./postgres:/data/postgres
+  #   restart: unless-stopped
+  #   networks:
+  #     - postgres_family
 
   message_db:
     container_name: message_db
@@ -68,6 +70,8 @@ services:
     ports:
       - "5440:80"
     restart: unless-stopped
+    depends_on:
+      - message_db
     networks:
       - postgres_family
 
@@ -77,10 +81,10 @@ services:
       context: ./bot-manager
       dockerfile: Dockerfile
     command: npm run start
-    depends_on:
-      - postgres
     networks:
       - postgres_family
+    depends_on:
+      - redis
 
   bot-router:
     container_name: bot_router
@@ -88,10 +92,10 @@ services:
       context: ./bot-router
       dockerfile: Dockerfile
     command: npm run start
-    depends_on:
-      - postgres
     networks:
       - postgres_family
+    depends_on:
+      - redis
 
   message_service:
     container_name: message_service
@@ -102,7 +106,8 @@ services:
       - "4000:4000"
     command: npm run start
     depends_on:
-      - postgres
+      - message_db
+      - redis
     networks:
       - postgres_family
 
