@@ -31,7 +31,7 @@ export class ReceiverService {
 
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
       parse_mode: 'HTML',
-      remove_keyboard: true,
+      one_time_keyboard: true,
       ...keyboard,
     });
   }
