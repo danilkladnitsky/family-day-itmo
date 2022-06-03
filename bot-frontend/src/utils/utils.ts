@@ -1,7 +1,7 @@
-import dagre from "dagre";
 import { MarkerType } from "react-flow-renderer";
 import { NodeDTO } from "../components/common/dto/node.dto";
 import { NodeTypes } from "../components/common/enum/node.types.enum";
+import dagre from "dagre";
 
 let nodeLayout: NodeDTO[] | null;
 
@@ -43,7 +43,7 @@ export const getLayoutedElements = (nodes, edges) => {
     markerEnd: {
       type: MarkerType.ArrowClosed,
     },
-    type: "step",
+    type: "bezier",
     labelBgBorderRadius: 4,
   }));
 
