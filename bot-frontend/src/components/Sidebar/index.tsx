@@ -14,7 +14,7 @@ const navItems = [
     name: "Создать сообщение от бота",
     popup: PopupTypes.CREATE_BOT_MESSAGE,
   },
-  { name: "Создать команду", popup: PopupTypes.CREATE_COMMAND },
+  // { name: "Создать команду", popup: PopupTypes.CREATE_COMMAND },
 ];
 
 const Sidebar = () => {
