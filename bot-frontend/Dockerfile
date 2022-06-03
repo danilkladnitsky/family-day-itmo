@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . /app
 ENV PATH /app/node_modules/.bin:$PATH
 RUN npm install --legacy-peer-deps
-RUN npm build
+RUN npm run build
 
 
 FROM nginx:alpine
