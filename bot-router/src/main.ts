@@ -8,7 +8,7 @@ const microserviceOptions = {
   name: 'ROUTER_SERVICE',
   transport: Transport.REDIS,
   options: {
-    url: 'redis://localhost:6379',
+    url: 'redis://redis:6379',
   },
 };
 

@@ -7,11 +7,13 @@ import { NestFactory } from '@nestjs/core';
 import { RestModule } from './rest/rest.module';
 import { Transport } from '@nestjs/microservices';
 
+require('dotenv').config();
+
 const microserviceOptions = {
   name: 'MESSAGE_SERVICE',
   transport: Transport.REDIS,
   options: {
-    url: 'redis://localhost:6379',
+    url: 'redis://redis:6379',
   },
 };
 

@@ -1,12 +1,9 @@
-import { Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 import { MICROSERVICE_GATEWAY } from 'services';
 import { MessageDTO } from 'src/common/dto/message.dto';
-import { TextDTO } from 'src/common/dto/text.dto';
 import { MessageTypes } from 'src/common/enum/types.enum';
-import { RouteEntity } from 'src/entities/route.entity';
-import { Repository } from 'typeorm';
+import { TextDTO } from 'src/common/dto/text.dto';
 
 const endpointsByTypes = {
   [MessageTypes.TEXT]: 'message-service.text',
@@ -19,10 +16,7 @@ const endpointsByTypes = {
 export class RouterService {
   gateway: ClientProxy;
 
-  constructor(
-    @InjectRepository(RouteEntity)
-    private readonly routeRepository: Repository<RouteEntity>,
-  ) {
+  constructor() {
     this.gateway = MICROSERVICE_GATEWAY;
   }
 
