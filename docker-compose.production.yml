@@ -104,13 +104,13 @@ services:
     networks:
       - postgres_family
 
-  frontend:
-    container_name: frontend
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:80"
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:80"
 
 volumes:
   redis_data:
