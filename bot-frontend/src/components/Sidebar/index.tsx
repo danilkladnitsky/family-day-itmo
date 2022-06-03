@@ -22,7 +22,7 @@ const Sidebar = () => {
   return (
     <SidebarWrapper>
       <Header>
-        <SmartToyIcon color="info" /> Севкабель-бот
+        <SmartToyIcon color="info" /> ITMO Family
       </Header>
       <SubHeader>Функции</SubHeader>
       <Nav>
