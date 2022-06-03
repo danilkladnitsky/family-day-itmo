@@ -31,12 +31,18 @@ export class ReceiverService {
 
     console.log(keyboard);
 
+    const parameters = { one_time_keyboard: true };
+    const options = isKeyboardInsideMessage ? { keyboard: null } : {};
+    const reply_markup = {
+      ...keyboard?.reply_markup,
+      ...parameters,
+      ...options,
+    };
+
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
       parse_mode: 'HTML',
 
-      ...{
-        ...keyboard,
-      },
+      reply_markup,
     });
   }
 
