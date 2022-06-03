@@ -2,8 +2,6 @@
 
 FROM node:13-alpine AS base
 
-RUN apk add --no-cache tini
-
 ENV appdir /partnadem/src/bot
 RUN mkdir -p ${appdir}
 WORKDIR ${appdir}
@@ -12,9 +10,8 @@ COPY package-lock.json ${appdir}
 
 # ---- Dependencies ----
 FROM base AS dependencies
-RUN npm install -g @nestjs/cli
-RUN npm install 
-RUN npm install --only=dev
+RUN npm install
+RUN npm install --save-dev webpack
 
 # ---- Build ----
 FROM dependencies AS build
@@ -22,4 +19,4 @@ COPY . .
 
 # ---- Release ----
 FROM build AS release
-CMD ["tini","npm", "run", "start"]
+CMD ["node","dist/main"]
