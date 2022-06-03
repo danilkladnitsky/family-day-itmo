@@ -18,7 +18,7 @@ export class TextService {
     private readonly bot: Telegraf<Context>,
   ) {
     this.router = BOT_ROUTER;
-    this.pattern = { cmd: 'router' };
+    this.pattern = { cmd: 'message-service.text' };
   }
 
   async handleMessageFromUser(

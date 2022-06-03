@@ -90,16 +90,16 @@ services:
     depends_on:
       - redis
 
-  bot-router:
-    container_name: bot_router
-    build:
-      context: ./bot-router
-      dockerfile: Dockerfile
-    command: npm run start
-    networks:
-      - postgres_family
-    depends_on:
-      - redis
+  # bot-router:
+  #   container_name: bot_router
+  #   build:
+  #     context: ./bot-router
+  #     dockerfile: Dockerfile
+  #   command: npm run start
+  #   networks:
+  #     - postgres_family
+  #   depends_on:
+  #     - redis
 
   message_service:
     container_name: message_service
