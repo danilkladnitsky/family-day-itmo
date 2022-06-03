@@ -1,6 +1,14 @@
 version: "3"
 
 services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./bot-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+
   redis:
     image: "redis:latest"
     container_name: microservice-redis
@@ -103,14 +111,6 @@ services:
       - /home/.env:/partnadem/src/bot/.env
     networks:
       - postgres_family
-
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:80"
 
 volumes:
   redis_data:
