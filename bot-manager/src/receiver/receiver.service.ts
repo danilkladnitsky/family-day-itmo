@@ -26,11 +26,7 @@ export class ReceiverService {
     const keyboard = keyboardExists
       ? isKeyboardInsideMessage
         ? Keyboard.make(payload.keyboard.data).inline()
-        : Keyboard.make({
-            ...payload.keyboard.data,
-          })
-            .resize()
-            .reply()
+        : Keyboard.make(payload.keyboard.data).reply()
       : { reply_markup: { hide_keyboard: true } };
 
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
