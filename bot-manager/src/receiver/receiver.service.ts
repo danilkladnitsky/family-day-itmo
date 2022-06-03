@@ -29,14 +29,13 @@ export class ReceiverService {
         : Keyboard.make(payload.keyboard.data).reply()
       : { reply_markup: { hide_keyboard: true } };
 
+    console.log(keyboard);
+
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
       parse_mode: 'HTML',
 
       ...{
         ...keyboard,
-        one_time_keyboard: true,
-        hide_keyboard: true,
-        remove_keyboard: true,
       },
     });
   }
