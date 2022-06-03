@@ -77,7 +77,7 @@ services:
       - postgres_family
     volumes:
       - /home/data_store/pgadmin-data:/var/lib/pgadmin
-    user: partnadem
+    user: root
 
   bot-manager:
     container_name: bot_manager
