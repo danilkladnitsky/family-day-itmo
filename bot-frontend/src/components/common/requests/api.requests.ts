@@ -1,4 +1,4 @@
-export const HOST = process.env.API_HOST ?? " http://localhost:4000/";
+export const HOST = process.env.API_HOST ?? " http://itmo.partnadem.com:4000/";
 
 export const GET_EDGES = "links";
 export const GET_NODES = "messages";
