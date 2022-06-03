@@ -63,8 +63,8 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: core2pixel@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
     ports:
       - "5440:80"
     restart: unless-stopped
@@ -77,10 +77,8 @@ services:
       context: ./bot-manager
       dockerfile: Dockerfile
     command: npm run start
-    # depends_on:
-    #   - postgres
-    volumes:
-      - /home/.env:/partnadem/src/bot/.env
+    depends_on:
+      - postgres
     networks:
       - postgres_family
 
@@ -92,8 +90,6 @@ services:
     command: npm run start
     depends_on:
       - postgres
-    volumes:
-      - /home/.env:/partnadem/src/bot/.env
     networks:
       - postgres_family
 
@@ -107,8 +103,6 @@ services:
     command: npm run start
     depends_on:
       - postgres
-    volumes:
-      - /home/.env:/partnadem/src/bot/.env
     networks:
       - postgres_family
 
