@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
 import { BotTextDTO } from 'src/common/dto/bot.text.dto';
 import { MessageDTO } from 'src/common/dto/message.dto';

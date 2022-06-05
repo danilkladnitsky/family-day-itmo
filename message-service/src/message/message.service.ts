@@ -8,6 +8,8 @@ import { createQueryBuilder, Repository } from 'typeorm';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { Link } from 'src/entities/link.entity';
 import { ButtonSize } from 'src/common/enum/button.size.enum';
+import { User } from 'src/entities/user.entity';
+import { Form } from 'src/entities/forms.entity';
 
 @Injectable()
 export class MessageService {
@@ -112,4 +114,6 @@ export class MessageService {
 
     return keyboard;
   }
+
+  async saveUserForm(form: Partial<Form>) {}
 }

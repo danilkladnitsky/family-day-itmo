@@ -29,8 +29,6 @@ export class ReceiverService {
         : Keyboard.make(payload.keyboard.data).reply()
       : { reply_markup: { hide_keyboard: true } };
 
-    console.log(keyboard);
-
     const parameters = { one_time_keyboard: true };
     const options = isKeyboardInsideMessage ? { keyboard: null } : {};
     const reply_markup = {
@@ -41,7 +39,6 @@ export class ReceiverService {
 
     await this.bot.telegram.sendMessage(payload.userId, payload.text, {
       parse_mode: 'HTML',
-
       reply_markup,
     });
   }

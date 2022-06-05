@@ -25,15 +25,19 @@ class ConfigService {
   }
 
   public isProduction() {
-    const mode = this.getValue('MODE', false);
-    return mode != 'DEV';
+    const mode = this.getValue('mode', false);
+    return mode === 'production';
   }
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
     return {
       type: 'postgres',
-      host: this.getValue('POSTGRES_HOST'),
-      port: parseInt(this.getValue('POSTGRES_PORT')),
+      host: this.isProduction()
+        ? this.getValue('POSTGRES_HOST')
+        : 'host.docker.internal',
+      port: this.isProduction()
+        ? parseInt(this.getValue('POSTGRES_PORT'))
+        : 5433,
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),

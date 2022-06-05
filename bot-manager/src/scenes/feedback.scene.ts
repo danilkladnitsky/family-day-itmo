@@ -1,3 +1,4 @@
+import { UseFilters, UseGuards } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import {
   Ctx,
@@ -8,9 +9,13 @@ import {
   SceneLeave,
 } from 'nestjs-telegraf';
 import { TelegrafContext } from 'src/common/interface/context.interface';
+import { TelegrafExceptionFilter } from 'src/filters/telegraf-exception.filter';
+import { UserRegisteredGuard } from 'src/guards/auth.guard';
 import { BOT_ROUTER } from 'src/services';
 
 @Scene('feedback')
+@UseFilters(TelegrafExceptionFilter)
+@UseGuards(UserRegisteredGuard)
 export class FeedbackScene {
   router: ClientProxy;
   pattern: { cmd: string };
@@ -36,12 +41,8 @@ export class FeedbackScene {
 
     const res = this.router.send(this.pattern, message);
     res.subscribe((data) => {
+      ctx.reply('Сообщение было отправлено!');
       ctx.scene.leave();
     });
-  }
-
-  @SceneLeave()
-  async onLeave(@Ctx() ctx) {
-    ctx.reply('Сообщение было отправлено!');
   }
 }

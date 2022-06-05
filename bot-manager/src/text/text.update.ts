@@ -1,3 +1,4 @@
+import { UseGuards } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { BOT_NAME } from 'config';
 import {
@@ -6,6 +7,7 @@ import {
   Hears,
   InjectBot,
   On,
+  Start,
   TelegrafContextType,
   Update,
 } from 'nestjs-telegraf';
@@ -13,6 +15,8 @@ import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { MessageTypes, TriggerTypes } from 'src/common/enum/types.enum';
 import { TelegrafContext } from 'src/common/interface/context.interface';
+import { UserRegisteredGuard } from 'src/guards/auth.guard';
+import { StartGuard } from 'src/guards/start.guard';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
@@ -29,6 +33,12 @@ export class TextUpdate {
   ) {
     this.router = BOT_ROUTER;
     this.pattern = { cmd: 'router' };
+  }
+
+  @UseGuards(StartGuard)
+  @Start()
+  async onStart(@Ctx() context) {
+    await await this.message(context);
   }
 
   @On('callback_query')

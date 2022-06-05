@@ -1,0 +1,18 @@
+FROM node:13-alpine AS base
+
+WORKDIR /usr/src/router
+COPY package.json ./
+COPY package-lock.json ./
+
+FROM base AS deps
+
+RUN npm install 
+RUN npm install --only=dev
+
+FROM deps AS build
+
+COPY . .
+
+FROM build AS dev
+
+CMD ["npm", "run", "start:dev"]

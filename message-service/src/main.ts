@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
+import { PRODUCTION } from 'const/env';
 import { RestModule } from './rest/rest.module';
 import { Transport } from '@nestjs/microservices';
 
@@ -13,7 +14,7 @@ const microserviceOptions = {
   name: 'MESSAGE_SERVICE',
   transport: Transport.REDIS,
   options: {
-    url: 'redis://redis:6379',
+    url: PRODUCTION ? 'redis://redis:6379' : 'redis://localhost:6379',
   },
 };
 

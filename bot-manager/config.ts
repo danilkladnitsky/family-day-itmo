@@ -1,1 +1,1 @@
-export const { BOT_TOKEN, BOT_NAME } = process.env;
+export const { BOT_TOKEN, BOT_NAME, DEV_BOT_TOKEN } = process.env;

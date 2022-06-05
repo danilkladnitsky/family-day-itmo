@@ -89,6 +89,8 @@ services:
       - postgres_family
     depends_on:
       - redis
+    environment:
+      - mode=production
 
   bot-router:
     container_name: bot_router
@@ -100,6 +102,8 @@ services:
       - postgres_family
     depends_on:
       - redis
+    environment:
+      - mode=production
 
   message_service:
     container_name: message_service
@@ -114,6 +118,8 @@ services:
       - redis
     networks:
       - postgres_family
+    environment:
+      - mode=production
 
 volumes:
   redis_data:

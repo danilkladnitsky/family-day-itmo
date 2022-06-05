@@ -17,22 +17,9 @@ services:
       - "--port"
       - "6379"
     volumes:
-      - "./redis_data:/usr/local/etc/redis/redis.conf"
+      - ./data_store/:/usr/local/etc/redis/redis.conf
     ports:
       - "6379:6379"
-
-  postgres:
-    container_name: postgres_manager
-    image: postgres:14.3-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: postgres
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./postgres:/data/postgres
-    restart: unless-stopped
     networks:
       - postgres_family
 
@@ -43,26 +30,31 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: message_db
+      POSTGRES_HOST: postgres
     ports:
-      - "5434:5432"
+      - "5433:5432"
     volumes:
-      - ./message_db:/data/postgres
+      - ./data_store/postgres-data:/var/lib/postgresql/data
     restart: unless-stopped
     networks:
       - postgres_family
 
-  # pgadmin:
-  #   container_name: pgadmin_container
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-  #     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-  #   ports:
-  #     - "5440:80"
-  #   restart: unless-stopped
-  #   networks:
-  #     - postgres_family
-
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: core2pixel@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5440:80"
+    restart: unless-stopped
+    depends_on:
+      - message_db
+    networks:
+      - postgres_family
+    volumes:
+      - ./data_store/pgadmin-data:/var/lib/pgadmin
+    user: root
 volumes:
   redis_data:
     driver: local

@@ -2,13 +2,14 @@ import 'dotenv/config';
 
 import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
+import { PRODUCTION } from './const/env';
 import { Transport } from '@nestjs/microservices';
 
 const microserviceOptions = {
   name: 'ROUTER_SERVICE',
   transport: Transport.REDIS,
   options: {
-    url: 'redis://redis:6379',
+    url: PRODUCTION ? 'redis://redis:6379' : 'redis://localhost:6379',
   },
 };
 
