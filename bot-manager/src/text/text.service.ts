@@ -26,7 +26,7 @@ export class TextService {
     message: MessageDTO<TextDTO>,
     ctx: TelegrafContext,
   ) {
-    if (message.content.text === 'Обратная связь') {
+    if (message.content.text === 'Задать вопрос') {
       this.joinUserToFeedbackScene(ctx);
       return;
     }
