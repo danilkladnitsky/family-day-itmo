@@ -3,7 +3,7 @@ import { UserMessageRequestDTO } from 'src/common/requests/user.message.create.r
 
 import { FeedbackService } from './feedback.service';
 
-@Controller()
+@Controller('feedback')
 export class FeedbackController {
   constructor(private readonly feedbackService: FeedbackService) {}
 
