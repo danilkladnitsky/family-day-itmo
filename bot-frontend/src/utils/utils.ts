@@ -43,7 +43,6 @@ export const getLayoutedElements = (nodes, edges) => {
     markerEnd: {
       type: MarkerType.ArrowClosed,
     },
-    type: "bezier",
     labelBgBorderRadius: 4,
   }));
 
