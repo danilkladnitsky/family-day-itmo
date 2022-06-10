@@ -21,6 +21,9 @@ import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
+const STICKER_ID =
+  'CAACAgIAAxkBAAEE9opio8Qyk8K1Rvj0AbdJEtdGrktEiAACLBcAAul_GEkwrrrh63dP-yQE';
+
 @Update()
 export class TextUpdate {
   router: ClientProxy;
@@ -39,6 +42,15 @@ export class TextUpdate {
   @Start()
   async onStart(@Ctx() context) {
     await await this.message(context);
+  }
+
+  @Command('stickers')
+  async sendSticker(@Ctx() context: TelegrafContext) {
+    await this.bot.telegram.sendSticker(context.from.id, STICKER_ID);
+    await this.bot.telegram.sendMessage(
+      context.from.id,
+      'Дарим тебе эксклюзивные стикеры ITMO FAMILY DAY!',
+    );
   }
 
   @On('callback_query')
