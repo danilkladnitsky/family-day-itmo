@@ -344,10 +344,10 @@ export function FlowContextProvider(
   const getMessagesFromUser = async () => {
     try {
       const { result, error } = await Api.fetch(USER_MESSAGES, API_METHODS.GET);
-      console.log(error);
-
       setMessages(result);
     } catch (err) {
+      console.log(err);
+
       console.log(error);
     }
   };
