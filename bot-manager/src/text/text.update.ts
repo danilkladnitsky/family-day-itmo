@@ -44,7 +44,7 @@ export class TextUpdate {
     await await this.message(context);
   }
 
-  @Command('stickers')
+  @Command('gift')
   async sendSticker(@Ctx() context: TelegrafContext) {
     await this.bot.telegram.sendSticker(context.from.id, STICKER_ID);
     await this.bot.telegram.sendMessage(
