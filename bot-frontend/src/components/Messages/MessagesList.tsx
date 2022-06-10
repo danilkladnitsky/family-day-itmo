@@ -7,10 +7,10 @@ import { useFlowContext } from "../../context/FlowProvider";
 const MessagesList = () => {
   const { messages, getMessagesFromUser } = useFlowContext();
 
+  console.log(messages);
+
   useEffect(() => {
-    return () => {
-      getMessagesFromUser();
-    };
+    getMessagesFromUser();
   }, []);
 
   return (
