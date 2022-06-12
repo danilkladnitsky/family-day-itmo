@@ -86,7 +86,7 @@ export class RestController {
     return await this.restService.deleteMessage(id);
   }
 
-  @Post('upload/photo')
+  @Post('upload/photo/:id')
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     schema: {
@@ -115,11 +115,24 @@ export class RestController {
       }),
     }),
   )
-  async addPhoto(@UploadedFile() photo, @Body('messageId') messageId: number) {
+  async addPhoto(
+    @UploadedFile() photo,
+    @Param('id') messageId: number,
+    @Body() file,
+  ) {
     if (!messageId) {
       throw new BadRequestException();
     }
 
     return await this.restService.attachPhoto(photo.filename, messageId);
+  }
+
+  @Post('delete/photo/:id')
+  async deletePhoto(@Param('id') messageId: number) {
+    if (!messageId) {
+      throw new BadRequestException();
+    }
+
+    return await this.restService.deletePhoto(messageId);
   }
 }

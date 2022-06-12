@@ -86,7 +86,8 @@ export default class Api {
   static async fetch<P>(
     path: string,
     method: API_METHODS,
-    options?: FetchOptions
+    options?: FetchOptions,
+    headers?: Record<string, any>
   ): Promise<Res<P>> {
     const { queryParams, body, ...restOptions } = options || {};
     const urlQuery = this.formQuery(queryParams);
@@ -94,7 +95,11 @@ export default class Api {
     try {
       const res = await fetch(`${HOST}${path}${urlQuery}`, {
         method: method,
-        headers: { ...BASIC_HEADERS, "Content-Type": "application/json" },
+        headers: {
+          ...BASIC_HEADERS,
+          "Content-Type": "application/json",
+          ...headers,
+        },
         body,
         credentials: "include",
         ...restOptions,

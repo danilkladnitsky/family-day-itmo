@@ -1,13 +1,14 @@
+import { useEffect, useState } from "react";
+
 import Button from "../Button/Button";
+import { Checkbox } from "@material-ui/core";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { NodeTypes } from "../common/enum/node.types.enum";
+import SubHeader from "../Header/SubHeader";
 import ValidationSubtitle from "../ValidationSubtitle/ValidationSubtitle";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
-import SubHeader from "../Header/SubHeader";
 import { useFlowContext } from "../../context/FlowProvider";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { Checkbox } from "@material-ui/core";
-import { useEffect, useState } from "react";
-import { NodeTypes } from "../common/enum/node.types.enum";
+import { useForm } from "react-hook-form";
 
 interface Props {
   mode: "CREATE" | "UPDATE";
@@ -28,11 +29,14 @@ const EditBotMessage = ({ mode }: Props) => {
     deactivatePanel,
     currentMessage,
     panels,
+    updatePhoto,
   } = useFlowContext();
+
+  const [image, setImage] = useState(null);
 
   const activePanel = panels.find((p) => p.active);
 
-  const onSubmit = (data: { message: string }) => {
+  const onSubmit = async (data: { message: string }) => {
     if (mode === "CREATE") {
       createBotMessage(data.message);
     } else {
@@ -44,11 +48,24 @@ const EditBotMessage = ({ mode }: Props) => {
         );
     }
 
+    // update photo
+    if (image) {
+      const formData = new FormData();
+
+      formData.append("file", image, image.name);
+
+      await updatePhoto(formData, currentMessage?.id);
+    }
+
     if (!activePanel) {
       return;
     }
 
     deactivatePanel(activePanel?.type);
+  };
+
+  const handleImageUpload = (event) => {
+    setImage(event.target.files[0]);
   };
 
   const headerTitle =
@@ -84,6 +101,13 @@ const EditBotMessage = ({ mode }: Props) => {
           placeholder={textareaPlaceholder}
           {...register("message", { required: true })}
         />
+        {currentMessage?.attachedPhoto && (
+          <Image
+            src={`https://itmo.partnadem.com/static/${currentMessage.attachedPhoto}`}
+          />
+        )}
+        <p>Загрузить фотографию</p>
+        <input name="myFile" type="file" onChange={handleImageUpload} />
         {errors.message && (
           <ValidationSubtitle>
             Необходимо заполнить поле выше
@@ -109,6 +133,11 @@ const Form = styled.form`
   flex-direction: column;
   width: 100%;
   gap: 15px;
+`;
+
+const Image = styled.image`
+  height: 100%;
+  width: 100%;
 `;
 
 export default EditBotMessage;

@@ -20,6 +20,7 @@ export const getLayoutedElements = (nodes, edges) => {
       data: {
         label: node.text,
       },
+      attachedPhoto: node.attachedPhoto,
       position: { x: 0, y: 0 },
     });
   });

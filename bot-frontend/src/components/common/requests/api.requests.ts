@@ -16,3 +16,4 @@ export const UPDATE_LINK = (linkId: number | string) => `link/${linkId}`;
 export const USER_MESSAGES = "feedback";
 
 export const REPLY_ON_MESSAGES = (id: number) => `feedback/${id}`;
+export const UPLOAD_PHOTO = (id: number) => `upload/photo/${id}`;

@@ -112,4 +112,11 @@ export class RestService {
       { attachedPhoto: filepath },
     );
   }
+
+  async deletePhoto(messageId: number) {
+    return await this.messageRepository.update(
+      { id: messageId },
+      { attachedPhoto: null },
+    );
+  }
 }

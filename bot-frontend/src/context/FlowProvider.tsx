@@ -5,9 +5,11 @@ import {
   DELETE_NODE,
   GET_EDGES,
   GET_NODES,
+  HOST,
   REPLY_ON_MESSAGES,
   UPDATE_BOT_MESSAGE,
   UPDATE_LINK,
+  UPLOAD_PHOTO,
   USER_MESSAGES,
 } from "../components/common/requests/api.requests";
 import {
@@ -76,6 +78,7 @@ interface IFlowContext {
   getMessagesFromUser: () => void;
   replyOnUserMessage: (id: number, replyMessage: string) => void;
   setCurrentUserMessage: (message: UserMessage) => void;
+  updatePhoto: (formData) => Promise<void>;
 
   nodes: NodeDTO[];
   edges: unknown;
@@ -372,6 +375,13 @@ export function FlowContextProvider(
     }
   };
 
+  const updatePhoto = async (formData, messageId: number) => {
+    await fetch(`${HOST}${UPLOAD_PHOTO(messageId)}`, {
+      method: "POST",
+      body: formData,
+    });
+  };
+
   return (
     <FlowContext.Provider
       value={{
@@ -393,6 +403,7 @@ export function FlowContextProvider(
         deleteNode,
         sendMessageFromUser,
         replyOnUserMessage,
+        updatePhoto,
         nodes,
         edges,
         panels,
