@@ -20,7 +20,7 @@ function App() {
         <BrowserRouter>
           <AppWrapper>
             <Routes>
-              <Route path="/admin" element={<AdminPage />} />
+              <Route path="/" element={<AdminPage />} />
               <Route path="/feedback" element={<FeedbackPage />} />
             </Routes>
           </AppWrapper>
