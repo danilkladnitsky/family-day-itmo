@@ -1,5 +1,7 @@
 import 'dotenv/config';
 
+import * as basicAuth from 'express-basic-auth';
+
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
@@ -29,6 +31,16 @@ async function bootstrap() {
   app.listen();
 
   const restApp = await NestFactory.create<NestExpressApplication>(RestModule);
+
+  restApp.use(
+    ['/docs', '/docs-json', '/api'],
+    basicAuth({
+      challenge: true,
+      users: {
+        kladnitsky: 'rl4cqj7',
+      },
+    }),
+  );
 
   restApp.enableCors({
     origin: true,
