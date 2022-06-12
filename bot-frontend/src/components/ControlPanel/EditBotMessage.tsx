@@ -101,11 +101,9 @@ const EditBotMessage = ({ mode }: Props) => {
           placeholder={textareaPlaceholder}
           {...register("message", { required: true })}
         />
-        {currentMessage?.attachedPhoto && (
-          <Image
-            src={`https://itmo.partnadem.com/files/${currentMessage.attachedPhoto}`}
-          />
-        )}
+        <Image
+          src={`https://itmo.partnadem.com/files/${currentMessage.attachedPhoto}`}
+        />
         <p>Загрузить фотографию</p>
         <input name="myFile" type="file" onChange={handleImageUpload} />
         {errors.message && (
@@ -135,9 +133,8 @@ const Form = styled.form`
   gap: 15px;
 `;
 
-const Image = styled.image`
-  height: 100%;
-  width: 100%;
+const Image = styled.img`
+  object-fit: contain;
 `;
 
 export default EditBotMessage;
