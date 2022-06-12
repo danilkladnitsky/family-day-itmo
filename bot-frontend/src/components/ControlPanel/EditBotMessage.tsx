@@ -103,7 +103,7 @@ const EditBotMessage = ({ mode }: Props) => {
         />
         {currentMessage?.attachedPhoto && (
           <Image
-            src={`https://itmo.partnadem.com/static/${currentMessage.attachedPhoto}`}
+            src={`https://itmo.partnadem.com/files/${currentMessage.attachedPhoto}`}
           />
         )}
         <p>Загрузить фотографию</p>

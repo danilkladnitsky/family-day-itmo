@@ -45,8 +45,8 @@ export class ReceiverService {
     if (payload.attachedPhoto) {
       const imageURL =
         process.env.mode === 'production'
-          ? 'https://itmo.partnadem.com/static/' + payload.attachedPhoto
-          : 'http://localhost:4000/static/' + payload.attachedPhoto;
+          ? 'https://itmo.partnadem.com/files/' + payload.attachedPhoto
+          : 'http://localhost:4000/files/' + payload.attachedPhoto;
 
       try {
         await this.bot.telegram.sendPhoto(payload.userId, imageURL);
