@@ -120,6 +120,8 @@ services:
       - postgres_family
     environment:
       - mode=production
+    volumes:
+      - ./message-service/photos:/home/data_store/admin_pictures
 
 volumes:
   redis_data:

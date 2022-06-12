@@ -3,10 +3,12 @@ import 'dotenv/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { NestFactory } from '@nestjs/core';
 import { PRODUCTION } from 'const/env';
 import { RestModule } from './rest/rest.module';
 import { Transport } from '@nestjs/microservices';
+import { join } from 'path';
 
 require('dotenv').config();
 
@@ -26,7 +28,7 @@ async function bootstrap() {
 
   app.listen();
 
-  const restApp = await NestFactory.create(RestModule);
+  const restApp = await NestFactory.create<NestExpressApplication>(RestModule);
 
   restApp.enableCors({
     origin: true,

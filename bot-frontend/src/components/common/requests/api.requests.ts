@@ -1,4 +1,5 @@
-export const HOST = process.env.API_HOST ?? " https://itmo.partnadem.com/api/";
+export const HOST =
+  process.env.REACT_APP_API_HOST ?? " https://itmo.partnadem.com/api/";
 
 export const GET_EDGES = "links";
 export const GET_NODES = "messages";

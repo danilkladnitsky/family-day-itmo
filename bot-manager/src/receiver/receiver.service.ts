@@ -41,6 +41,19 @@ export class ReceiverService {
       parse_mode: 'HTML',
       reply_markup,
     });
+
+    if (payload.attachedPhoto) {
+      const imageURL =
+        process.env.mode === 'production'
+          ? 'https://itmo.partnadem.com/static/' + payload.attachedPhoto
+          : 'http://localhost:4000/static/' + payload.attachedPhoto;
+
+      try {
+        await this.bot.telegram.sendPhoto(payload.userId, imageURL);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
 
   async sendErrorNotification(payload: MessageDTO<TextDTO>) {

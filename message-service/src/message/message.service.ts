@@ -69,6 +69,7 @@ export class MessageService {
     const outputMessage = {
       userId: payload.user.id,
       text: targetMessage.text,
+      attachedPhoto: targetMessage.attachedPhoto,
       keyboard: { data: await this.getKeyboard(targetMessage.id) },
     };
 

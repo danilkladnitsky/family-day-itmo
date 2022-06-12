@@ -18,7 +18,7 @@ export class Message extends BaseEntity {
   text: string;
 
   @Column({ nullable: true })
-  attachedPhotos: string; // todo: add photos
+  attachedPhoto: string; // todo: add photos
 
   @ManyToMany(() => Link, { cascade: true })
   @JoinTable()

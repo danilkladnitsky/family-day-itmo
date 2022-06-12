@@ -4,4 +4,5 @@ export type BotTextDTO = {
   userId: string;
   text: string;
   keyboard: KeyboardDTO;
+  attachedPhoto?: string;
 };
