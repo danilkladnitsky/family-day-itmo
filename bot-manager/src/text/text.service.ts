@@ -31,7 +31,10 @@ export class TextService {
       return;
     }
 
-    if (message.content.text === 'Заполнить анкету') {
+    if (
+      message.content.text === 'Заполнить анкету' ||
+      message.content.text === 'Заполнить анкету ✍️'
+    ) {
       this.joinUserToFormScene(ctx);
       return;
     }
