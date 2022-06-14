@@ -26,7 +26,10 @@ export class TextService {
     message: MessageDTO<TextDTO>,
     ctx: TelegrafContext,
   ) {
-    if (message.content.text === 'Задать вопрос') {
+    if (
+      message.content.text === 'Задать вопрос' ||
+      message.content.text === '💬 Задать вопрос'
+    ) {
       this.joinUserToFeedbackScene(ctx);
       return;
     }
