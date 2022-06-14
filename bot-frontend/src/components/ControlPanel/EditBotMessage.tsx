@@ -102,7 +102,7 @@ const EditBotMessage = ({ mode }: Props) => {
           {...register("message", { required: true })}
         />
         <Image
-          src={`https://itmo.partnadem.com/files/${currentMessage.attachedPhoto}`}
+          src={`https://itmo.partnadem.com/files/${currentMessage?.attachedPhoto}`}
         />
         <p>Загрузить фотографию</p>
         <input name="myFile" type="file" onChange={handleImageUpload} />
