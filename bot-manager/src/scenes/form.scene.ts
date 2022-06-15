@@ -113,6 +113,7 @@ export class FormScene {
     if (form.status) {
       await (ctx.reply as any)('Вы уже заполнили анкету.');
       await ctx.scene.leave();
+      return;
     }
     await (ctx.reply as any)('Укажите свой статус из списка: ', {
       reply_markup: StatusKeyboard.reply_markup,
