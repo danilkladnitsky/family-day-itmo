@@ -43,25 +43,25 @@ const StatusKeyboard = Keyboard.make([
 const HobiesKeyboard = Keyboard.make([
   [
     {
-      text: 'Наука',
+      text: '🔬Наука',
       callback_data: JSON.stringify({ step: 'hobies', value: 'Science' }),
     },
   ],
   [
     {
-      text: 'IT',
+      text: '💻 IT',
       callback_data: JSON.stringify({ step: 'hobies', value: 'IT' }),
     },
   ],
   [
     {
-      text: 'Спорт',
+      text: '⛹️‍♂️ Спорт',
       callback_data: JSON.stringify({ step: 'hobies', value: 'Sport' }),
     },
   ],
   [
     {
-      text: 'Предпринимательство',
+      text: '💰Предпринимательство',
       callback_data: JSON.stringify({
         step: 'hobies',
         value: 'Business',
@@ -70,14 +70,26 @@ const HobiesKeyboard = Keyboard.make([
   ],
   [
     {
-      text: 'Дети',
-      callback_data: JSON.stringify({ step: 'hobies', value: 'Children' }),
+      text: '🎞 Кино и сериалы',
+      callback_data: JSON.stringify({
+        step: 'hobies',
+        value: 'Cinema and series',
+      }),
     },
   ],
   [
     {
-      text: 'Сериалы',
-      callback_data: JSON.stringify({ step: 'hobies', value: 'Series' }),
+      text: '♻️Экология',
+      callback_data: JSON.stringify({
+        step: 'hobies',
+        value: 'Ecologu',
+      }),
+    },
+  ],
+  [
+    {
+      text: '👶 Воспитание детей',
+      callback_data: JSON.stringify({ step: 'hobies', value: 'Children' }),
     },
   ],
 ]).inline();

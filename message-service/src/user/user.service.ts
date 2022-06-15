@@ -36,7 +36,7 @@ export class UserService {
 
     if (existingForm) {
       const hobies = existingForm.hobies
-        ? existingForm.hobies + ',' + form.hobies
+        ? (existingForm.hobies ?? '') + ',' + form.hobies
         : form.hobies;
 
       const object = {
