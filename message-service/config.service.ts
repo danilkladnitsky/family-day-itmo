@@ -37,7 +37,7 @@ class ConfigService {
         : 'host.docker.internal',
       port: this.isProduction()
         ? parseInt(this.getValue('POSTGRES_PORT'))
-        : 5433,
+        : 5432,
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
