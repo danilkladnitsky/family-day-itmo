@@ -82,7 +82,7 @@ const HobiesKeyboard = Keyboard.make([
       text: '♻️Экология',
       callback_data: JSON.stringify({
         step: 'hobies',
-        value: 'Ecologu',
+        value: 'Ecology',
       }),
     },
   ],
@@ -109,7 +109,11 @@ export class FormScene {
   }
 
   @SceneEnter()
-  async onEnter(@Ctx() ctx: TelegrafContext) {
+  async onEnter(@Ctx() ctx: TelegrafContext, @Form() form) {
+    if (!form.status) {
+      await (ctx.reply as any)('Вы уже заполнили анкету.');
+      await ctx.scene.leave();
+    }
     await (ctx.reply as any)('Укажите свой статус из списка: ', {
       reply_markup: StatusKeyboard.reply_markup,
       one_time_keyboard: true,

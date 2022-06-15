@@ -35,7 +35,7 @@ export class UserService {
     const existingForm = await this.getFormById(form.userId);
 
     if (existingForm) {
-      const hobies = existingForm.hobies
+      const hobies = Boolean(existingForm.hobies)
         ? (existingForm.hobies ?? '') + ',' + form.hobies
         : form.hobies;
 
