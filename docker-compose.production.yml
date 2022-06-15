@@ -80,7 +80,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=wkriVUI3c4Y8Zt3Q
       - POSTGRES_EXTRA_OPTS=-Z6 --schema=public --blobs
-      - SCHEDULE=@hourly
+      - SCHEDULE=@hourly #SCHEDULE=@every 10m
       - BACKUP_KEEP_DAYS=7
       - BACKUP_KEEP_WEEKS=4
       - BACKUP_KEEP_MONTHS=6
