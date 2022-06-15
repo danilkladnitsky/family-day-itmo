@@ -30,6 +30,8 @@ class ConfigService {
   }
 
   public getTypeOrmConfig(): TypeOrmModuleOptions {
+    console.log(this.getValue('POSTGRES_PASSWORD'));
+
     return {
       type: 'postgres',
       host: this.isProduction()

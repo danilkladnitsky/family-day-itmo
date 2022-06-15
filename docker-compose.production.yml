@@ -51,7 +51,7 @@ services:
     image: postgres:14.3-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: wkriVUI3c4Y8Zt3Q
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: message_db
       POSTGRES_HOST: postgres
     ports:
