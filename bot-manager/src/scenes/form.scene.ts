@@ -110,7 +110,7 @@ export class FormScene {
 
   @SceneEnter()
   async onEnter(@Ctx() ctx: TelegrafContext, @Form() form) {
-    if (!form.status) {
+    if (form.status) {
       await (ctx.reply as any)('Вы уже заполнили анкету.');
       await ctx.scene.leave();
     }
