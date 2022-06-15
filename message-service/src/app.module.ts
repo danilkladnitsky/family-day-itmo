@@ -7,6 +7,8 @@ import { UserModule } from './user/user.module';
 import { configService } from 'config.service';
 import { join } from 'path';
 
+console.log(configService.getTypeOrmConfig());
+
 @Module({
   imports: [
     MessageModule,

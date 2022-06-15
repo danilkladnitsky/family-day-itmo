@@ -53,7 +53,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: wkriVUI3c4Y8Zt3Q
       POSTGRES_DB: message_db
-      POSTGRES_HOST: message_db
+      POSTGRES_HOST: postgres
     ports:
       - "5432:5432"
     volumes:
@@ -75,7 +75,7 @@ services:
     depends_on:
       - message_db
     environment:
-      - POSTGRES_HOST=message_db
+      - POSTGRES_HOST=postgres
       - POSTGRES_DB=message_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=wkriVUI3c4Y8Zt3Q
