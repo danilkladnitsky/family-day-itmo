@@ -42,6 +42,11 @@ export class TextService {
       return;
     }
 
+    if (message.content.text === 'Показать месторасположение фестиваля') {
+      this.bot.telegram.sendLocation(ctx.from.id, 30.267514, 30.267514);
+      return;
+    }
+
     this.sendToMessageService(message);
   }
 
