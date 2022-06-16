@@ -168,17 +168,12 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=mynewpassword
       - GF_SECURITY_ADMIN_USER=partnadem
-    volumes:
-      - grafana-storage:/var/lib/grafana
-      - ./grafana.ini:/etc/grafana/grafana.ini
     networks:
       - postgres_family
 
 volumes:
   redis_data:
     driver: local
-  grafana-storage:
-    external: true
 
 networks:
   postgres_family:
