@@ -149,6 +149,31 @@ services:
     volumes:
       - ./message-service/photos:/home/data_store/admin_pictures
 
+  loki:
+    image: grafana/loki:2.4.0
+    container_name: loki
+    ports:
+      - "5100:5100"
+    command:
+      - --config.file=/home/loki/config.yaml
+    volumes:
+      - ./loki/config.yml:/home/loki/config.yaml
+    networks:
+      - postgres_family
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - 5000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=mynewpassword
+      - GF_SECURITY_ADMIN_USER=partnadem
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ./grafana.ini:/etc/grafana/grafana.ini
+    networks:
+      - postgres_family
+
 volumes:
   redis_data:
     driver: local
