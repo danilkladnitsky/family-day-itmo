@@ -177,6 +177,8 @@ services:
 volumes:
   redis_data:
     driver: local
+  grafana-storage:
+    external: true
 
 networks:
   postgres_family:
