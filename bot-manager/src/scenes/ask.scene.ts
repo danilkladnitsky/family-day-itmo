@@ -12,7 +12,7 @@ import { Keyboard } from 'telegram-keyboard';
 const FeedbackKeyboard = Keyboard.make([
   [
     {
-      text: '🤩 Очень понравились! ',
+      text: '🤩 Очень понравились!',
       callback_data: JSON.stringify({ step: 'status', value: '4' }),
     },
   ],
@@ -41,6 +41,14 @@ const FeedbackKeyboard = Keyboard.make([
     },
   ],
 ]).inline();
+
+const feedbackList = {
+  0: '🤷🏻‍♀️ Не могу сказать однозначно',
+  1: '☹️ Все плохо',
+  2: '😐 Что-то не очень',
+  3: '🙂 В целом хорошо',
+  4: '🤩 Очень понравились!',
+};
 
 @Scene('feedback')
 @UseFilters(TelegrafExceptionFilter)
@@ -72,7 +80,11 @@ export class AskScene {
       })
       .toPromise();
 
-    await ctx.reply('Ваш фидбек был сохранён! Спасибо за участие в опросе!');
+    await ctx.reply(
+      `Твой фидбек: ${
+        feedbackList[+result?.feedback] ?? 'был записан'
+      }! Спасибо за участие в опросе!🙏🏻`,
+    );
     ctx.scene.leave();
   }
 }
