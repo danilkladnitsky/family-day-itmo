@@ -29,7 +29,7 @@ function initLogger(tag: LOGGER_JOBS) {
   });
 }
 
-export enum LOGGER_JOBS {
+export const enum LOGGER_JOBS {
   RECEIVER = 'receiver',
   FORMS = 'forms',
   FEEDBACK = 'feedback',
