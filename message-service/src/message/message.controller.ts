@@ -1,17 +1,10 @@
 import { Controller } from '@nestjs/common';
 import { MessageService } from './message.service';
-import {
-  Ctx,
-  MessagePattern,
-  Payload,
-  RedisContext,
-} from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
-import { TriggerTypes } from 'src/common/enum/types.enum';
 import { FeedbackService } from 'src/feedback/feedback.service';
 import { UserMessageRequestDTO } from 'src/common/requests/user.message.create.request';
-import { Form } from 'src/entities/forms.entity';
 
 @Controller()
 export class MessageController {
