@@ -24,5 +24,9 @@ export class Form extends BaseEntity {
 
   @OneToOne(() => User)
   @JoinColumn()
+  partner: User;
+
+  @OneToOne(() => User)
+  @JoinColumn()
   user: User;
 }

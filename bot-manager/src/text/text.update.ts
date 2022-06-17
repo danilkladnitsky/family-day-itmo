@@ -21,6 +21,8 @@ import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
+const { userMessagesLogger } = require('../logger');
+
 const STICKER_ID =
   'CAACAgIAAxkBAAEE9opio8Qyk8K1Rvj0AbdJEtdGrktEiAACLBcAAul_GEkwrrrh63dP-yQE';
 
@@ -87,6 +89,11 @@ export class TextUpdate {
       trigger: TriggerTypes.TEXT,
       type: MessageTypes.TEXT,
     };
+
+    userMessagesLogger.info({
+      message: 'Пользователь прислал сообщение',
+      ...message,
+    });
 
     this.service.handleMessageFromUser(message, context);
   }

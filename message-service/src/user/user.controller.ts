@@ -28,4 +28,10 @@ export class UserController {
     const res = await this.service.getFormByUserId(userId);
     return res;
   }
+
+  @MessagePattern({ cmd: 'form.find' })
+  async findForm(@Payload('UserId') userId: string) {
+    const res = await this.service.findForm(userId);
+    return res;
+  }
 }

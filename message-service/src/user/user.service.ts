@@ -31,13 +31,20 @@ export class UserService {
       .getOne();
   }
 
+  async getForms() {
+    return await this.formRepository
+      .createQueryBuilder('form')
+      .leftJoinAndSelect('form.user', 'user')
+      .getMany();
+  }
+
   async saveForm(form: Partial<Form>) {
     const existingForm = await this.getFormById(form.userId);
 
     if (existingForm) {
-      const hobies = Boolean(existingForm.hobies)
-        ? (existingForm.hobies ?? '') + ',' + form.hobies
-        : form.hobies;
+      
+      const newHobies = (existingForm.hobies ?? '') + ',' + form.hobies;
+      const hobies = Boolean(existingForm.hobies) ? newHobies : form.hobies;
 
       const object = {
         ...existingForm,
@@ -48,5 +55,35 @@ export class UserService {
     }
 
     return await this.formRepository.save(form);
+  }
+
+  async findForm(userId: string) {
+    const form = await this.getFormById(userId);
+
+    const userMetrics = form.hobies.split(',');
+    const forms = await this.getForms();
+
+    forms.forEach((form) => {
+      const metrics = form.hobies.split(',');
+    });
+  }
+
+  async countMatches(userMetric: string, currentMetric: string) {
+    const userMetrics = userMetric.split(',');
+    const currentMetrics = currentMetric.split(',');
+
+    if (!userMetrics.length || !currentMetrics) {
+      return 0;
+    }
+
+    let counter = 0;
+
+    currentMetrics.forEach((metric) => {
+      if (userMetrics.indexOf(metric) !== -1) {
+        counter++;
+      }
+    });
+
+    return counter;
   }
 }

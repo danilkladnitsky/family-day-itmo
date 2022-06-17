@@ -75,7 +75,7 @@ services:
     depends_on:
       - message_db
     environment:
-      - POSTGRES_HOST=postgres
+      - POSTGRES_HOST=message_db
       - POSTGRES_DB=message_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=wkriVUI3c4Y8Zt3Q
@@ -117,6 +117,7 @@ services:
       - redis
     environment:
       - mode=production
+      - LOKI_HOST=http://loki:5100
 
   bot-router:
     container_name: bot_router
@@ -130,6 +131,7 @@ services:
       - redis
     environment:
       - mode=production
+      - LOKI_HOST=http://loki:5100
 
   message_service:
     container_name: message_service
@@ -146,6 +148,7 @@ services:
       - postgres_family
     environment:
       - mode=production
+      - LOKI_HOST=http://loki:5100
     volumes:
       - ./message-service/photos:/home/data_store/admin_pictures
 
