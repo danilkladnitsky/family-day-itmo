@@ -5,7 +5,6 @@ import { ClientProxy } from '@nestjs/microservices';
 import { Context } from 'telegraf';
 import { LOG_LABELS } from 'src/logger';
 import { TelegrafExecutionContext } from 'nestjs-telegraf';
-import { last } from 'rxjs';
 
 const { botLogger } = require('../logger');
 
@@ -43,7 +42,7 @@ export class StartGuard implements CanActivate {
       botLogger.error({
         message: 'Ошибка при регистрации пользователя' + err,
         ...from,
-        label: LOG_LABELS.BOT_ERROR,
+        label: 'bot-error',
       });
     }
 
