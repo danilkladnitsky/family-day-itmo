@@ -22,9 +22,8 @@ export class UserService {
 
   async updateFeedback(userId: string, feedback: string) {
     const user = await this.getUser(userId);
-    console.log(userId, feedback);
 
-    return await this.userRepository.update({ userId }, { feedback });
+    return user ? await this.userRepository.update(userId, { feedback }) : null;
   }
 
   async getFormById(userId: string) {

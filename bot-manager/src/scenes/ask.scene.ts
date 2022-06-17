@@ -66,7 +66,6 @@ export class AskScene {
       })
       .toPromise();
 
-    console.log(result);
     await ctx.reply('Ваш фидбек был сохранён! Спасибо за участие в опросе!');
     ctx.scene.leave();
   }
