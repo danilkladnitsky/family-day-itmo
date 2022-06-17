@@ -12,26 +12,32 @@ import { Keyboard } from 'telegram-keyboard';
 const FeedbackKeyboard = Keyboard.make([
   [
     {
-      text: '🥰',
+      text: '🤩 Очень понравились! ',
       callback_data: JSON.stringify({ step: 'status', value: '4' }),
     },
   ],
   [
     {
-      text: '😊',
+      text: '🙂 В целом хорошо',
       callback_data: JSON.stringify({ step: 'status', value: '3' }),
     },
   ],
   [
     {
-      text: '😐',
+      text: '😐 Что-то не очень',
       callback_data: JSON.stringify({ step: 'status', value: '2' }),
     },
   ],
   [
     {
-      text: '☹',
+      text: '☹️ Все плохо',
       callback_data: JSON.stringify({ step: 'status', value: '1' }),
+    },
+  ],
+  [
+    {
+      text: '🤷🏻‍♀️ Не могу сказать однозначно',
+      callback_data: JSON.stringify({ step: 'status', value: '0' }),
     },
   ],
 ]).inline();
@@ -50,7 +56,7 @@ export class AskScene {
 
   @SceneEnter()
   async onEnter(@Ctx() ctx: TelegrafContext) {
-    await ctx.reply('Оцените качество проведения фестиваля:', {
+    await ctx.reply('Как тебе активности на ITMO FAMILY DAY?', {
       reply_markup: FeedbackKeyboard.reply_markup,
     });
   }
