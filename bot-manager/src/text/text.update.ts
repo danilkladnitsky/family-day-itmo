@@ -19,16 +19,7 @@ import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
-import { botLogger, getLabel } from '../logger';
-
-enum LOG_LABELS {
-  MESSAGE_FROM_BOT = 'message-from-bot',
-  MESSAGE_FROM_USER = 'message-from-user',
-  BOT_ERROR = 'bot-error',
-  BOT_ACTION = 'bot-action',
-  USER_ACTION = 'user-action',
-  STICKERS = 'stickers',
-}
+import { botLogger, getLabel, LOG_LABELS } from '../logger';
 
 const STICKER_ID =
   'CAACAgIAAxkBAAEE9opio8Qyk8K1Rvj0AbdJEtdGrktEiAACLBcAAul_GEkwrrrh63dP-yQE';

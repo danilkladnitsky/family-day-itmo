@@ -19,16 +19,7 @@ import { BOT_ROUTER } from 'src/services';
 import { getCallbackQuery } from 'src/utils/callback_query';
 import { Keyboard } from 'telegram-keyboard';
 
-const { botLogger, getLabel } = require('../logger');
-
-enum LOG_LABELS {
-  MESSAGE_FROM_BOT = 'message-from-bot',
-  MESSAGE_FROM_USER = 'message-from-user',
-  BOT_ERROR = 'bot-error',
-  BOT_ACTION = 'bot-action',
-  USER_ACTION = 'user-action',
-  STICKERS = 'stickers',
-}
+const { botLogger, getLabel, LOG_LABELS } = require('../logger');
 
 const StatusKeyboard = Keyboard.make([
   [

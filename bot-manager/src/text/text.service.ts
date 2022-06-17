@@ -8,16 +8,7 @@ import { TelegrafContext } from 'src/common/interface/context.interface';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Telegraf } from 'telegraf';
 
-import { botLogger, getLabel } from '../logger';
-
-enum LOG_LABELS {
-  MESSAGE_FROM_BOT = 'message-from-bot',
-  MESSAGE_FROM_USER = 'message-from-user',
-  BOT_ERROR = 'bot-error',
-  BOT_ACTION = 'bot-action',
-  USER_ACTION = 'user-action',
-  STICKERS = 'stickers',
-}
+import { botLogger, getLabel, LOG_LABELS } from '../logger';
 
 @Injectable()
 export class TextService {

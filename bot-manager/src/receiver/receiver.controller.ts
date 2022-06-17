@@ -5,16 +5,7 @@ import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { ReceiverService } from './receiver.service';
 
-import { receiverLogger, getLabel } from '../logger';
-
-enum LOG_LABELS {
-  MESSAGE_FROM_BOT = 'message-from-bot',
-  MESSAGE_FROM_USER = 'message-from-user',
-  BOT_ERROR = 'bot-error',
-  BOT_ACTION = 'bot-action',
-  USER_ACTION = 'user-action',
-  STICKERS = 'stickers',
-}
+import { receiverLogger, getLabel, LOG_LABELS } from '../logger';
 
 @Controller()
 export class ReceiverController {

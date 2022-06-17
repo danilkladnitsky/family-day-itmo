@@ -1,19 +1,11 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { botLogger, getLabel } from '../logger';
+import { LOG_LABELS, botLogger, getLabel } from '../logger';
 
 import { BOT_ROUTER } from 'src/services';
 import { ClientProxy } from '@nestjs/microservices';
 import { Context } from 'telegraf';
 import { TelegrafExecutionContext } from 'nestjs-telegraf';
 
-enum LOG_LABELS {
-  MESSAGE_FROM_BOT = 'message-from-bot',
-  MESSAGE_FROM_USER = 'message-from-user',
-  BOT_ERROR = 'bot-error',
-  BOT_ACTION = 'bot-action',
-  USER_ACTION = 'user-action',
-  STICKERS = 'stickers',
-}
 @Injectable()
 export class StartGuard implements CanActivate {
   router: ClientProxy;
