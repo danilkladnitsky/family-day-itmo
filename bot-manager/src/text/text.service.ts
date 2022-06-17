@@ -5,6 +5,7 @@ import { InjectBot } from 'nestjs-telegraf';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { TelegrafContext } from 'src/common/interface/context.interface';
+import { getLabel } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Telegraf } from 'telegraf';
 
