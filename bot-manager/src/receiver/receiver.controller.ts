@@ -31,7 +31,7 @@ export class ReceiverController {
         message: 'Ошибка при доставке сообщения от бота',
         ...payload,
         error,
-        label: LOG_LABELS.MESSAGE_FROM_BOT,
+        labels: LOG_LABELS.MESSAGE_FROM_BOT,
       });
     }
   }

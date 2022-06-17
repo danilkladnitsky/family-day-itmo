@@ -41,7 +41,7 @@ export class StartGuard implements CanActivate {
       botLogger.info({
         message: 'Пользователь зарегистрировался',
         ...from,
-        label: LOG_LABELS.USER_ACTION,
+        labels: LOG_LABELS.USER_ACTION,
       });
 
       return true;

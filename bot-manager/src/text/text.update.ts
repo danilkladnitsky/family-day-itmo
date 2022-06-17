@@ -53,7 +53,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Прописал /start',
       ...context.from,
-      label: LOG_LABELS.USER_ACTION,
+      labels: LOG_LABELS.USER_ACTION,
     });
     await await this.message(context);
   }
@@ -70,14 +70,14 @@ export class TextUpdate {
       botLogger.info({
         message: 'Получил стикеры',
         ...context.from,
-        label: LOG_LABELS.STICKERS,
+        labels: LOG_LABELS.STICKERS,
       });
     } catch (err) {
       console.log(err);
       botLogger.warn({
         message: 'Ошибка при получении стикеров',
         ...context.from,
-        label: LOG_LABELS.BOT_ERROR,
+        labels: LOG_LABELS.BOT_ERROR,
       });
     }
   }
@@ -102,7 +102,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Нажал на кнопку',
       ...message,
-      label: LOG_LABELS.USER_ACTION,
+      labels: LOG_LABELS.USER_ACTION,
     });
 
     try {
@@ -112,7 +112,7 @@ export class TextUpdate {
       botLogger.error({
         message: 'Не смог нажать на кнопку',
         ...message,
-        label: LOG_LABELS.BOT_ERROR,
+        labels: LOG_LABELS.BOT_ERROR,
       });
     }
   }
@@ -135,7 +135,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Прислал сообщение',
       ...message,
-      label: LOG_LABELS.MESSAGE_FROM_USER,
+      labels: LOG_LABELS.MESSAGE_FROM_USER,
     });
 
     this.service.handleMessageFromUser(message, context);
@@ -148,7 +148,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Пользователь прислал фотографию',
       ...context.update.message,
-      label: LOG_LABELS.MESSAGE_FROM_USER,
+      labels: LOG_LABELS.MESSAGE_FROM_USER,
     });
   }
 }

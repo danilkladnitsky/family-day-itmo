@@ -55,7 +55,7 @@ export class ReceiverService {
     receiverLogger.info({
       message: 'Пользователь получил сообщение',
       ...payload,
-      label: LOG_LABELS.MESSAGE_FROM_BOT,
+      labels: LOG_LABELS.MESSAGE_FROM_BOT,
     });
 
     if (payload.attachedPhoto) {
@@ -70,7 +70,7 @@ export class ReceiverService {
         receiverLogger.info({
           message: 'Пользователь получил фото',
           ...payload,
-          label: LOG_LABELS.MESSAGE_FROM_BOT,
+          labels: LOG_LABELS.MESSAGE_FROM_BOT,
         });
       } catch (err) {
         console.log(err);
@@ -78,7 +78,7 @@ export class ReceiverService {
           message: 'Пользователь не получил фото',
           ...payload,
           err,
-          label: LOG_LABELS.MESSAGE_FROM_BOT,
+          labels: LOG_LABELS.MESSAGE_FROM_BOT,
         });
       }
     }

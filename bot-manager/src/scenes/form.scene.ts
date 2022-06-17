@@ -19,6 +19,17 @@ import { BOT_ROUTER } from 'src/services';
 import { getCallbackQuery } from 'src/utils/callback_query';
 import { Keyboard } from 'telegram-keyboard';
 
+const { botLogger } = require('../logger');
+
+enum LOG_LABELS {
+  MESSAGE_FROM_BOT = 'message-from-bot',
+  MESSAGE_FROM_USER = 'message-from-user',
+  BOT_ERROR = 'bot-error',
+  BOT_ACTION = 'bot-action',
+  USER_ACTION = 'user-action',
+  STICKERS = 'stickers',
+}
+
 const StatusKeyboard = Keyboard.make([
   [
     {
@@ -113,6 +124,12 @@ export class FormScene {
     if (form.hobies) {
       await (ctx.reply as any)('Вы уже заполнили анкету.');
       await ctx.scene.leave();
+
+      botLogger.info({
+        message: 'Пользователь уже заполнял анкету',
+        ...ctx.from,
+        labels: LOG_LABELS.USER_ACTION,
+      });
       return;
     }
     await (ctx.reply as any)('Укажите свой статус из списка: ', {
