@@ -21,7 +21,7 @@ export class UserService {
   }
 
   async updateFeedback(userId: string, feedback: string) {
-    const user = await this.getUser(userId);
+    const user = await this.getUser(userId, 'id');
 
     return user ? await this.userRepository.update(userId, { feedback }) : null;
   }
