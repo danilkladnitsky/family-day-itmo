@@ -6,7 +6,7 @@ import { TelegrafExceptionFilter } from 'src/filters/telegraf-exception.filter';
 import { UserRegisteredGuard } from 'src/guards/auth.guard';
 import { BOT_ROUTER } from 'src/services';
 
-@Scene('feedback')
+@Scene('ask')
 @UseFilters(TelegrafExceptionFilter)
 @UseGuards(UserRegisteredGuard)
 export class FeedbackScene {

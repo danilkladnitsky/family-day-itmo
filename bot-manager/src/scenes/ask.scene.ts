@@ -36,7 +36,7 @@ const FeedbackKeyboard = Keyboard.make([
   ],
 ]).inline();
 
-@Scene('ask')
+@Scene('feedback')
 @UseFilters(TelegrafExceptionFilter)
 @UseGuards(UserRegisteredGuard)
 export class AskScene {
