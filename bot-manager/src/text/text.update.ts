@@ -15,6 +15,7 @@ import { TextDTO } from 'src/common/dto/text.dto';
 import { MessageTypes, TriggerTypes } from 'src/common/enum/types.enum';
 import { TelegrafContext } from 'src/common/interface/context.interface';
 import { StartGuard } from 'src/guards/start.guard';
+import { getLabel } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
@@ -53,7 +54,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Прописал /start',
       ...context.from,
-      labels: LOG_LABELS.USER_ACTION,
+      labels: getLabel(LOG_LABELS.USER_ACTION),
     });
     await await this.message(context);
   }
@@ -70,14 +71,14 @@ export class TextUpdate {
       botLogger.info({
         message: 'Получил стикеры',
         ...context.from,
-        labels: LOG_LABELS.STICKERS,
+        labels: getLabel(LOG_LABELS.STICKERS),
       });
     } catch (err) {
       console.log(err);
       botLogger.warn({
         message: 'Ошибка при получении стикеров',
         ...context.from,
-        labels: LOG_LABELS.BOT_ERROR,
+        labels: getLabel(LOG_LABELS.BOT_ERROR),
       });
     }
   }
@@ -102,7 +103,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Нажал на кнопку',
       ...message,
-      labels: LOG_LABELS.USER_ACTION,
+      labels: getLabel(LOG_LABELS.USER_ACTION),
     });
 
     try {
@@ -112,7 +113,7 @@ export class TextUpdate {
       botLogger.error({
         message: 'Не смог нажать на кнопку',
         ...message,
-        labels: LOG_LABELS.BOT_ERROR,
+        labels: getLabel(LOG_LABELS.BOT_ERROR),
       });
     }
   }
@@ -135,7 +136,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Прислал сообщение',
       ...message,
-      labels: LOG_LABELS.MESSAGE_FROM_USER,
+      labels: getLabel(LOG_LABELS.MESSAGE_FROM_USER),
     });
 
     this.service.handleMessageFromUser(message, context);
@@ -148,7 +149,7 @@ export class TextUpdate {
     botLogger.info({
       message: 'Пользователь прислал фотографию',
       ...context.update.message,
-      labels: LOG_LABELS.MESSAGE_FROM_USER,
+      labels: getLabel(LOG_LABELS.MESSAGE_FROM_USER),
     });
   }
 }

@@ -67,7 +67,7 @@ export class TextService {
       botLogger.error({
         message: 'Не смог отправить сообщение' + error,
         ...message,
-        labels: LOG_LABELS.MESSAGE_FROM_USER,
+        labels: getLabel(LOG_LABELS.MESSAGE_FROM_USER),
       });
     }
   }

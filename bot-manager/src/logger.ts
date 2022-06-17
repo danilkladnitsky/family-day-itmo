@@ -40,6 +40,9 @@ export enum LOGGER_JOBS {
   BOT = 'bot',
 }
 
+export function getLabel(label) {
+  return { label };
+}
 const receiverLogger = initLogger(LOGGER_JOBS.RECEIVER);
 const formLogger = initLogger(LOGGER_JOBS.FORMS);
 const feedbackLogger = initLogger(LOGGER_JOBS.FEEDBACK);

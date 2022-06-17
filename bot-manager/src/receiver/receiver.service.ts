@@ -5,6 +5,7 @@ import { BotTextDTO } from 'src/common/dto/bot.text.dto';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { KeyboardTypes } from 'src/common/enum/keyboard.types.enum';
+import { getLabel } from 'src/logger';
 import { Context, Telegraf } from 'telegraf';
 import { Keyboard } from 'telegram-keyboard';
 const { receiverLogger } = require('../logger');
@@ -55,7 +56,7 @@ export class ReceiverService {
     receiverLogger.info({
       message: 'Пользователь получил сообщение',
       ...payload,
-      labels: LOG_LABELS.MESSAGE_FROM_BOT,
+      labels: getLabel(LOG_LABELS.MESSAGE_FROM_BOT),
     });
 
     if (payload.attachedPhoto) {
@@ -78,7 +79,7 @@ export class ReceiverService {
           message: 'Пользователь не получил фото',
           ...payload,
           err,
-          labels: LOG_LABELS.MESSAGE_FROM_BOT,
+          labels: getLabel(LOG_LABELS.MESSAGE_FROM_BOT),
         });
       }
     }
