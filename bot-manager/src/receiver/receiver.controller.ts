@@ -3,7 +3,6 @@ import { EventPattern, Payload } from '@nestjs/microservices';
 import { BotTextDTO } from 'src/common/dto/bot.text.dto';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
-import { LOG_LABELS } from 'src/logger';
 import { ReceiverService } from './receiver.service';
 
 const { receiverLogger } = require('../logger');
