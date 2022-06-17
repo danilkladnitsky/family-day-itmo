@@ -5,11 +5,19 @@ import { InjectBot } from 'nestjs-telegraf';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { TelegrafContext } from 'src/common/interface/context.interface';
-import { LOG_LABELS } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Telegraf } from 'telegraf';
 
 const { botLogger } = require('../logger');
+
+enum LOG_LABELS {
+  MESSAGE_FROM_BOT = 'message-from-bot',
+  MESSAGE_FROM_USER = 'message-from-user',
+  BOT_ERROR = 'bot-error',
+  BOT_ACTION = 'bot-action',
+  USER_ACTION = 'user-action',
+  STICKERS = 'stickers',
+}
 
 @Injectable()
 export class TextService {

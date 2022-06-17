@@ -5,10 +5,18 @@ import { BotTextDTO } from 'src/common/dto/bot.text.dto';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { KeyboardTypes } from 'src/common/enum/keyboard.types.enum';
-import { LOG_LABELS } from 'src/logger';
 import { Context, Telegraf } from 'telegraf';
 import { Keyboard } from 'telegram-keyboard';
 const { receiverLogger } = require('../logger');
+
+enum LOG_LABELS {
+  MESSAGE_FROM_BOT = 'message-from-bot',
+  MESSAGE_FROM_USER = 'message-from-user',
+  BOT_ERROR = 'bot-error',
+  BOT_ACTION = 'bot-action',
+  USER_ACTION = 'user-action',
+  STICKERS = 'stickers',
+}
 
 @Injectable()
 export class ReceiverService {
