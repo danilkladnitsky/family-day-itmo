@@ -91,8 +91,8 @@ export class TextUpdate {
     };
 
     botLogger.info({
-      message: 'Нажал на кнопку',
-      ...message,
+      message: 'Нажал на кнопку: ' + message.content?.text,
+      ...message.user,
       labels: getLabel(LOG_LABELS.USER_ACTION),
     });
 
@@ -102,7 +102,7 @@ export class TextUpdate {
       console.log(error);
       botLogger.error({
         message: 'Не смог нажать на кнопку',
-        ...message,
+        ...message.user,
         labels: getLabel(LOG_LABELS.BOT_ERROR),
       });
     }
@@ -124,7 +124,7 @@ export class TextUpdate {
     };
 
     botLogger.info({
-      message: 'Прислал сообщение',
+      message: 'Прислал сообщение: ' + message.content?.text,
       ...message,
       labels: getLabel(LOG_LABELS.MESSAGE_FROM_USER),
     });

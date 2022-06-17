@@ -37,10 +37,13 @@ export class StartGuard implements CanActivate {
 
       return true;
     } catch (err) {
+      console.log(err);
+
       botLogger.error({
-        message: 'Ошибка при регистрации пользователя' + err,
+        message: 'Ошибка при регистрации пользователя',
         ...from,
         label: getLabel(LOG_LABELS.BOT_ERROR),
+        err,
       });
     }
 

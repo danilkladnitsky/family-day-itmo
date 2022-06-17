@@ -56,8 +56,9 @@ export class TextService {
       this.router.emit(this.pattern, message);
     } catch (error) {
       botLogger.error({
-        message: 'Не смог отправить сообщение' + error,
+        message: 'Не смог отправить сообщение',
         ...message,
+        error,
         labels: getLabel(LOG_LABELS.MESSAGE_FROM_USER),
       });
     }
