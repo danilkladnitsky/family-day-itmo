@@ -111,8 +111,14 @@ export class FormScene {
   }
 
   @SceneEnter()
-  async onEnter(@Ctx() ctx: TelegrafContext, @Form() form) {
-    if (form.hobies) {
+  async onEnter(@Ctx() ctx: TelegrafContext, @Form() form, @User() user) {
+    if (!user) {
+      ctx.reply(
+        'Упс, похоже вы не зарегистрировались в боте. Пропишите команду /start ещё раз.',
+      );
+      ctx.scene.leave();
+    }
+    if (form?.hobies) {
       await (ctx.reply as any)('Твоя анкета уже заполнена.');
       await ctx.scene.leave();
 

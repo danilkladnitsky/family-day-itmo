@@ -63,7 +63,13 @@ export class AskScene {
   }
 
   @SceneEnter()
-  async onEnter(@Ctx() ctx: TelegrafContext) {
+  async onEnter(@Ctx() ctx: TelegrafContext, @User() user) {
+    if (!user) {
+      ctx.reply(
+        'Упс, похоже вы не зарегистрировались в боте. Пропишите команду /start ещё раз.',
+      );
+      ctx.scene.leave();
+    }
     await ctx.reply('Как тебе активности на ITMO FAMILY DAY?', {
       reply_markup: FeedbackKeyboard.reply_markup,
     });
