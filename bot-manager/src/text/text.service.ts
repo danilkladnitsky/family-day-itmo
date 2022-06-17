@@ -31,7 +31,7 @@ export class TextService {
       message.content.text === 'Задать вопрос' ||
       message.content.text === '💬 Задать вопрос'
     ) {
-      this.joinUserToFeedbackScene(ctx);
+      this.joinUserToAskScene(ctx);
       return;
     }
 
@@ -40,6 +40,11 @@ export class TextService {
       message.content.text === 'Заполнить анкету ✍️'
     ) {
       this.joinUserToFormScene(ctx);
+      return;
+    }
+
+    if (message.content.text === '/feedback') {
+      this.joinUserToFeedbackScene(ctx);
       return;
     }
 
@@ -64,11 +69,15 @@ export class TextService {
     }
   }
 
-  async joinUserToFeedbackScene(ctx: TelegrafContext) {
-    ctx.scene.enter('feedback');
+  async joinUserToAskScene(ctx: TelegrafContext) {
+    ctx.scene.enter('ask');
   }
 
   async joinUserToFormScene(ctx: TelegrafContext) {
     ctx.scene.enter('form');
+  }
+
+  async joinUserToFeedbackScene(ctx: TelegrafContext) {
+    ctx.scene.enter('feedback');
   }
 }

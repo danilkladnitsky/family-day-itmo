@@ -1,13 +1,6 @@
 import { UseFilters, UseGuards } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import {
-  Ctx,
-  InjectBot,
-  On,
-  Scene,
-  SceneEnter,
-  SceneLeave,
-} from 'nestjs-telegraf';
+import { Ctx, On, Scene, SceneEnter } from 'nestjs-telegraf';
 import { TelegrafContext } from 'src/common/interface/context.interface';
 import { TelegrafExceptionFilter } from 'src/filters/telegraf-exception.filter';
 import { UserRegisteredGuard } from 'src/guards/auth.guard';

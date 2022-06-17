@@ -18,6 +18,14 @@ export class UserController {
     return await this.service.createUser(user);
   }
 
+  @MessagePattern({ cmd: 'user.update.feedback' })
+  async updateFeedback(
+    @Payload('userId') userId: string,
+    @Payload('feedback') feedback: string,
+  ) {
+    return await this.service.updateFeedback(userId, feedback);
+  }
+
   @MessagePattern({ cmd: 'form.save' })
   async saveForm(@Payload() form: Partial<Form>) {
     return await this.service.saveForm(form);

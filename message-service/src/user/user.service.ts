@@ -20,6 +20,13 @@ export class UserService {
     return userExists ?? (await this.userRepository.save(user));
   }
 
+  async updateFeedback(userId: string, feedback: string) {
+    const user = await this.getUser(userId);
+    return user
+      ? await this.userRepository.update({ userId }, { feedback })
+      : null;
+  }
+
   async getFormById(userId: string) {
     return await this.formRepository.findOne({ userId });
   }

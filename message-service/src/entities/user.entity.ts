@@ -30,4 +30,7 @@ export class User extends BaseEntity {
 
   @OneToOne(() => Form)
   form: Form;
+
+  @Column({ nullable: true })
+  feedback: string;
 }
