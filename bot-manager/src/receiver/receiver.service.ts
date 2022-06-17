@@ -7,7 +7,7 @@ import { TextDTO } from 'src/common/dto/text.dto';
 import { KeyboardTypes } from 'src/common/enum/keyboard.types.enum';
 import { Context, Telegraf } from 'telegraf';
 import { Keyboard } from 'telegram-keyboard';
-const { receiverLogger, getLabel } = require('../logger');
+import { receiverLogger, getLabel } from '../logger';
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',

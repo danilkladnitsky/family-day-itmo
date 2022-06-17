@@ -8,7 +8,7 @@ import { TelegrafContext } from 'src/common/interface/context.interface';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Telegraf } from 'telegraf';
 
-const { botLogger, getLabel } = require('../logger');
+import { botLogger, getLabel } from '../logger';
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',

@@ -43,22 +43,10 @@ export enum LOGGER_JOBS {
 export function getLabel(label) {
   return { label };
 }
-const receiverLogger = initLogger(LOGGER_JOBS.RECEIVER);
-const formLogger = initLogger(LOGGER_JOBS.FORMS);
-const feedbackLogger = initLogger(LOGGER_JOBS.FEEDBACK);
-const userMessagesLogger = initLogger(LOGGER_JOBS.USER_MESSAGES);
-const errorLogger = initLogger(LOGGER_JOBS.ERRORS);
-const buttonLogger = initLogger(LOGGER_JOBS.BUTTON);
-const startLogger = initLogger(LOGGER_JOBS.START);
-const botLogger = initLogger(LOGGER_JOBS.BOT);
+export const receiverLogger = initLogger(LOGGER_JOBS.RECEIVER);
+export const botLogger = initLogger(LOGGER_JOBS.BOT);
 module.exports = {
   receiverLogger,
-  formLogger,
-  feedbackLogger,
-  userMessagesLogger,
-  errorLogger,
-  buttonLogger,
-  startLogger,
   botLogger,
   getLabel,
 };

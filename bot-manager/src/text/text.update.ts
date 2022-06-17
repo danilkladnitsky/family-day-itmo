@@ -19,7 +19,7 @@ import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
-const { botLogger, getLabel } = require('../logger');
+import { botLogger, getLabel } from '../logger';
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',
