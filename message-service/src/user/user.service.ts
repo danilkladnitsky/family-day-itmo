@@ -16,7 +16,8 @@ export class UserService {
   }
 
   async createUser(user: User) {
-    return await this.userRepository.save(user);
+    const userExists = await this.getUser(user.userId);
+    return userExists ?? (await this.userRepository.save(user));
   }
 
   async getFormById(userId: string) {
