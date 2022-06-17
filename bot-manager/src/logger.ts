@@ -49,4 +49,6 @@ module.exports = {
   receiverLogger,
   botLogger,
   getLabel,
+  LOG_LABELS,
+  LOGGER_JOBS,
 };
