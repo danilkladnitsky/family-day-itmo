@@ -113,7 +113,7 @@ export class FormScene {
   @SceneEnter()
   async onEnter(@Ctx() ctx: TelegrafContext, @Form() form) {
     if (form.hobies) {
-      await (ctx.reply as any)('Вы уже заполнили анкету.');
+      await (ctx.reply as any)('Твоя анкета уже заполнена.');
       await ctx.scene.leave();
 
       botLogger.info({
@@ -152,7 +152,7 @@ export class FormScene {
         .toPromise();
 
       await ctx.reply(
-        `Сохранил выбор: ${value}.\nВведите команду /quit, чтобы выйти из формы`,
+        `Сохранил выбор: ${value}.\nВведи команду /quit, чтобы выйти из формы`,
       );
     } catch (err) {
       await ctx.reply('Не удалось сохранить ваш выбор.');
@@ -161,7 +161,7 @@ export class FormScene {
 
   async handleHobiesChange(@Ctx() ctx) {
     await (ctx.reply as any)(
-      'Выберите из списка на какие темы тебе интересно пообщаться. Можешь выбрать несколько, так твои шансы встретить собеседника возрастут.\nПосле завершения введите команду /quit.',
+      'Выбери из списка на какие темы тебе интересно пообщаться. Можешь выбрать несколько, так твои шансы встретить собеседника возрастут. После завершения введи команду /quit.',
       {
         reply_markup: HobiesKeyboard.reply_markup,
         one_time_keyboard: true,
