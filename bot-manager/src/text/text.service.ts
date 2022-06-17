@@ -43,7 +43,7 @@ export class TextService {
       return;
     }
 
-    if (message.content.text === '/feedback') {
+    if (message.content.text.trim() === '/feedback') {
       this.joinUserToFeedbackScene(ctx);
       return;
     }
