@@ -3,8 +3,6 @@ const LokiTransport = require('winston-loki');
 
 const { MODE, LOKI_HOST } = process.env;
 
-const APP_LABEL = 'app';
-
 export enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',
   MESSAGE_FROM_USER = 'message-from-user',
@@ -13,6 +11,19 @@ export enum LOG_LABELS {
   USER_ACTION = 'user-action',
   STICKERS = 'stickers',
 }
+
+export enum LOGGER_JOBS {
+  RECEIVER = 'receiver',
+  FORMS = 'forms',
+  FEEDBACK = 'feedback',
+  USER_MESSAGES = 'user-messages',
+  ERRORS = 'errors',
+  BUTTON = 'button',
+  START = 'start',
+  BOT = 'bot',
+}
+
+const APP_LABEL = 'app';
 
 function initLogger(tag: LOGGER_JOBS) {
   return createLogger({
@@ -27,17 +38,6 @@ function initLogger(tag: LOGGER_JOBS) {
       }),
     ],
   });
-}
-
-export const enum LOGGER_JOBS {
-  RECEIVER = 'receiver',
-  FORMS = 'forms',
-  FEEDBACK = 'feedback',
-  USER_MESSAGES = 'user-messages',
-  ERRORS = 'errors',
-  BUTTON = 'button',
-  START = 'start',
-  BOT = 'bot',
 }
 
 export function getLabel(label) {
