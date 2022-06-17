@@ -80,8 +80,6 @@ export class AskScene {
       })
       .toPromise();
 
-    console.log(result);
-
     await ctx.reply(
       `Твой фидбек: ${
         feedbackList[+result?.feedback] ?? 'был записан'
