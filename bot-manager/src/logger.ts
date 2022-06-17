@@ -60,4 +60,5 @@ module.exports = {
   buttonLogger,
   startLogger,
   botLogger,
+  getLabel,
 };

@@ -15,12 +15,11 @@ import { TextDTO } from 'src/common/dto/text.dto';
 import { MessageTypes, TriggerTypes } from 'src/common/enum/types.enum';
 import { TelegrafContext } from 'src/common/interface/context.interface';
 import { StartGuard } from 'src/guards/start.guard';
-import { getLabel } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
-const { botLogger } = require('../logger');
+const { botLogger, getLabel } = require('../logger');
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',

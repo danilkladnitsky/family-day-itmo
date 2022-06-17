@@ -6,7 +6,7 @@ import { TextDTO } from 'src/common/dto/text.dto';
 import { getLabel } from 'src/logger';
 import { ReceiverService } from './receiver.service';
 
-const { receiverLogger } = require('../logger');
+const { receiverLogger, getLabel } = require('../logger');
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',

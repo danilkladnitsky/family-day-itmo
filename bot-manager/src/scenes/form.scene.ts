@@ -15,12 +15,11 @@ import { Form } from 'src/decorators/form.decorator';
 import { User } from 'src/decorators/user.decorator';
 import { TelegrafExceptionFilter } from 'src/filters/telegraf-exception.filter';
 import { UserRegisteredGuard } from 'src/guards/auth.guard';
-import { getLabel } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { getCallbackQuery } from 'src/utils/callback_query';
 import { Keyboard } from 'telegram-keyboard';
 
-const { botLogger } = require('../logger');
+const { botLogger, getLabel } = require('../logger');
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',

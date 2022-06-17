@@ -4,9 +4,8 @@ import { BOT_ROUTER } from 'src/services';
 import { ClientProxy } from '@nestjs/microservices';
 import { Context } from 'telegraf';
 import { TelegrafExecutionContext } from 'nestjs-telegraf';
-import { getLabel } from 'src/logger';
 
-const { botLogger } = require('../logger');
+const { botLogger, getLabel } = require('../logger');
 
 enum LOG_LABELS {
   MESSAGE_FROM_BOT = 'message-from-bot',
