@@ -11,18 +11,7 @@ export enum LOG_LABELS {
   BOT_ERROR = 'bot-error',
   BOT_ACTION = 'bot-action',
   USER_ACTION = 'user-action',
-  GET_USER = 'get-user',
-  PING_SERVICE = 'ping-service',
-  CREATE_TICKET = 'create-ticket',
-  SEND_TICKET = 'send-ticket',
-  VALIDATE_TICKET = 'validate-ticket',
-  CHECKED_TICKET = 'success-ticket',
-  EARLY_TICKET = 'early-ticket',
-  USER_REGISTRATION = 'user-registration',
-  CHOOSE_LEVEL = 'choose-level',
-  VOTING = 'voting',
-  VOTING_COMMAND = 'voting-command',
-  VOTING_EARLY = 'voting-early',
+  STICKERS = 'stickers',
 }
 
 function initLogger(tag: LOGGER_JOBS) {
@@ -30,7 +19,7 @@ function initLogger(tag: LOGGER_JOBS) {
     format: format.combine(format.splat()),
     transports: [
       new LokiTransport({
-        host: LOKI_HOST ?? "http://host.docker.internal:5100",
+        host: LOKI_HOST ?? 'http://host.docker.internal:5100',
         labels: {
           service: tag,
           app: APP_LABEL,
@@ -46,6 +35,9 @@ export enum LOGGER_JOBS {
   FEEDBACK = 'feedback',
   USER_MESSAGES = 'user-messages',
   ERRORS = 'errors',
+  BUTTON = 'button',
+  START = 'start',
+  BOT = 'bot',
 }
 
 const receiverLogger = initLogger(LOGGER_JOBS.RECEIVER);
@@ -53,11 +45,16 @@ const formLogger = initLogger(LOGGER_JOBS.FORMS);
 const feedbackLogger = initLogger(LOGGER_JOBS.FEEDBACK);
 const userMessagesLogger = initLogger(LOGGER_JOBS.USER_MESSAGES);
 const errorLogger = initLogger(LOGGER_JOBS.ERRORS);
-
+const buttonLogger = initLogger(LOGGER_JOBS.BUTTON);
+const startLogger = initLogger(LOGGER_JOBS.START);
+const botLogger = initLogger(LOGGER_JOBS.BOT);
 module.exports = {
   receiverLogger,
   formLogger,
   feedbackLogger,
   userMessagesLogger,
   errorLogger,
+  buttonLogger,
+  startLogger,
+  botLogger,
 };

@@ -8,20 +8,19 @@ import {
   InjectBot,
   On,
   Start,
-  TelegrafContextType,
   Update,
 } from 'nestjs-telegraf';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { MessageTypes, TriggerTypes } from 'src/common/enum/types.enum';
 import { TelegrafContext } from 'src/common/interface/context.interface';
-import { UserRegisteredGuard } from 'src/guards/auth.guard';
 import { StartGuard } from 'src/guards/start.guard';
+import { LOG_LABELS } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Scenes, Telegraf } from 'telegraf';
 import { TextService } from './text.service';
 
-const { userMessagesLogger } = require('../logger');
+const { botLogger } = require('../logger');
 
 const STICKER_ID =
   'CAACAgIAAxkBAAEE9opio8Qyk8K1Rvj0AbdJEtdGrktEiAACLBcAAul_GEkwrrrh63dP-yQE';
@@ -43,16 +42,36 @@ export class TextUpdate {
   @UseGuards(StartGuard)
   @Start()
   async onStart(@Ctx() context) {
+    botLogger.info({
+      message: 'Прописал /start',
+      ...context.from,
+      label: LOG_LABELS.USER_ACTION,
+    });
     await await this.message(context);
   }
 
   @Command('gift')
   async sendSticker(@Ctx() context: TelegrafContext) {
-    await this.bot.telegram.sendSticker(context.from.id, STICKER_ID);
-    await this.bot.telegram.sendMessage(
-      context.from.id,
-      'Дарим тебе эксклюзивные стикеры ITMO FAMILY DAY!',
-    );
+    try {
+      await this.bot.telegram.sendSticker(context.from.id, STICKER_ID);
+      await this.bot.telegram.sendMessage(
+        context.from.id,
+        'Дарим тебе эксклюзивные стикеры ITMO FAMILY DAY!',
+      );
+
+      botLogger.info({
+        message: 'Получил стикеры',
+        ...context.from,
+        label: LOG_LABELS.STICKERS,
+      });
+    } catch (err) {
+      console.log(err);
+      botLogger.warn({
+        message: 'Ошибка при получении стикеров',
+        ...context.from,
+        label: LOG_LABELS.BOT_ERROR,
+      });
+    }
   }
 
   @On('callback_query')
@@ -72,7 +91,22 @@ export class TextUpdate {
       type: MessageTypes.CALLBACK_QUERY,
     };
 
-    this.router.emit(this.pattern, message);
+    botLogger.info({
+      message: 'Нажал на кнопку',
+      ...message,
+      label: LOG_LABELS.USER_ACTION,
+    });
+
+    try {
+      this.router.emit(this.pattern, message);
+    } catch (error) {
+      console.log(error);
+      botLogger.error({
+        message: 'Не смог нажать на кнопку',
+        ...message,
+        label: LOG_LABELS.BOT_ERROR,
+      });
+    }
   }
 
   @On('text')
@@ -90,9 +124,10 @@ export class TextUpdate {
       type: MessageTypes.TEXT,
     };
 
-    userMessagesLogger.info({
-      message: 'Пользователь прислал сообщение',
+    botLogger.info({
+      message: 'Прислал сообщение',
       ...message,
+      label: LOG_LABELS.MESSAGE_FROM_USER,
     });
 
     this.service.handleMessageFromUser(message, context);
@@ -102,9 +137,10 @@ export class TextUpdate {
   async onPhoto(@Ctx() context) {
     const photo = context.update.message.photo;
 
-    console.log(context);
-
-    // const res = await this.bot.telegram.getFileLink(photo[0].file_id);
-    // console.log(res);
+    botLogger.info({
+      message: 'Пользователь прислал фотографию',
+      ...context.update.message,
+      label: LOG_LABELS.MESSAGE_FROM_USER,
+    });
   }
 }

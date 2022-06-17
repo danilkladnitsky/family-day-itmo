@@ -5,9 +5,11 @@ import { InjectBot } from 'nestjs-telegraf';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { TelegrafContext } from 'src/common/interface/context.interface';
-import { UserRegisteredGuard } from 'src/guards/auth.guard';
+import { LOG_LABELS } from 'src/logger';
 import { BOT_ROUTER } from 'src/services';
 import { Context, Telegraf } from 'telegraf';
+
+const { botLogger } = require('../logger');
 
 @Injectable()
 export class TextService {
@@ -51,7 +53,15 @@ export class TextService {
   }
 
   async sendToMessageService(message: MessageDTO<TextDTO>) {
-    this.router.emit(this.pattern, message);
+    try {
+      this.router.emit(this.pattern, message);
+    } catch (error) {
+      botLogger.error({
+        message: 'Не смог отправить сообщение' + error,
+        ...message,
+        label: LOG_LABELS.MESSAGE_FROM_USER,
+      });
+    }
   }
 
   async joinUserToFeedbackScene(ctx: TelegrafContext) {

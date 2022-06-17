@@ -5,8 +5,10 @@ import { BotTextDTO } from 'src/common/dto/bot.text.dto';
 import { MessageDTO } from 'src/common/dto/message.dto';
 import { TextDTO } from 'src/common/dto/text.dto';
 import { KeyboardTypes } from 'src/common/enum/keyboard.types.enum';
+import { LOG_LABELS } from 'src/logger';
 import { Context, Telegraf } from 'telegraf';
 import { Keyboard } from 'telegram-keyboard';
+const { receiverLogger } = require('../logger');
 
 @Injectable()
 export class ReceiverService {
@@ -42,6 +44,12 @@ export class ReceiverService {
       reply_markup,
     });
 
+    receiverLogger.info({
+      message: 'Пользователь получил сообщение',
+      ...payload,
+      label: LOG_LABELS.MESSAGE_FROM_BOT,
+    });
+
     if (payload.attachedPhoto) {
       const imageURL =
         process.env.mode === 'production'
@@ -50,8 +58,20 @@ export class ReceiverService {
 
       try {
         await this.bot.telegram.sendPhoto(payload.userId, imageURL);
+
+        receiverLogger.info({
+          message: 'Пользователь получил фото',
+          ...payload,
+          label: LOG_LABELS.MESSAGE_FROM_BOT,
+        });
       } catch (err) {
         console.log(err);
+        receiverLogger.error({
+          message: 'Пользователь не получил фото',
+          ...payload,
+          err,
+          label: LOG_LABELS.MESSAGE_FROM_BOT,
+        });
       }
     }
   }
