@@ -63,6 +63,9 @@ export class FeedbackService {
       userId,
       text: 'Вам пришло сообщение от администратора бота: \n' + message,
     };
+
+    console.log(outputMessage);
+
     // send message to user
     this.bot.emit({ cmd: 'bot.send.message' }, outputMessage);
   }
@@ -96,5 +99,22 @@ export class FeedbackService {
         userOne.username ?? 'профиль не найден'
       }`,
     );
+  }
+
+  async sendGlobalMessage(message: string) {
+    const users = await this.userRepository.find();
+
+    let counter = 0;
+    const timer = setInterval(async () => {
+      const user = users[counter];
+
+      await this.sendMessage(user.userId, message);
+
+      counter++;
+
+      if (counter >= users.length) {
+        clearInterval(timer);
+      }
+    }, 500);
   }
 }

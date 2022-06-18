@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { Payload } from '@nestjs/microservices';
 import { UserMessageRequestDTO } from 'src/common/requests/user.message.create.request';
 
 import { FeedbackService } from './feedback.service';
@@ -35,5 +44,10 @@ export class FeedbackController {
     @Param('userIdTwo') userIdTwo: string,
   ) {
     return await this.feedbackService.pairPeople(userIdOne, userIdTwo);
+  }
+
+  @Post('global')
+  async sendGlobalMessage(@Query('message') message: string) {
+    await this.feedbackService.sendGlobalMessage(message);
   }
 }
