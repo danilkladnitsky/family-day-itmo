@@ -131,7 +131,6 @@ services:
       - postgres_family
     depends_on:
       - redis
-      - message_service
     environment:
       - mode=production
       - LOKI_HOST=http://loki:5100
