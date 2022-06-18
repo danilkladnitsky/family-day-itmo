@@ -115,6 +115,8 @@ services:
       - postgres_family
     depends_on:
       - redis
+      - message_service
+      - bot-router
     environment:
       - mode=production
       - LOKI_HOST=http://loki:5100
@@ -129,7 +131,7 @@ services:
       - postgres_family
     depends_on:
       - redis
-      - bot-manager
+      - message_service
     environment:
       - mode=production
       - LOKI_HOST=http://loki:5100
@@ -145,7 +147,7 @@ services:
     depends_on:
       - message_db
       - redis
-      - bot-manager
+      - bot-router
     networks:
       - postgres_family
     environment:
