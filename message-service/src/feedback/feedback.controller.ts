@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { UserMessageRequestDTO } from 'src/common/requests/user.message.create.request';
 
 import { FeedbackService } from './feedback.service';
@@ -22,8 +22,18 @@ export class FeedbackController {
     @Param('id') id: number,
     @Body() body: Partial<UserMessageRequestDTO>,
   ) {
-    console.log(id, body);
-
     return await this.feedbackService.updateMessage(id, body);
+  }
+
+  @Patch('send/:userId')
+  async sendMessage(@Param('userId') id: string, @Body() message: string) {
+    return await this.feedbackService.sendMessage(id, message);
+  }
+  @Patch('pair/:userIdOne/:userIdTwo')
+  async pair(
+    @Param('userIdOne') userIdOne: string,
+    @Param('userIdTwo') userIdTwo: string,
+  ) {
+    return await this.feedbackService.pairPeople(userIdOne, userIdTwo);
   }
 }
