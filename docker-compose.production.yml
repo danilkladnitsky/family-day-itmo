@@ -54,6 +54,7 @@ services:
       POSTGRES_PASSWORD: wkriVUI3c4Y8Zt3Q
       POSTGRES_DB: message_db
       POSTGRES_HOST: postgres
+      PGDATA: /var/lib/postgresql/data/
     ports:
       - "5432:5432"
     volumes:
